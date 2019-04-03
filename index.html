@@ -8,24 +8,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-        <header class="stickyHeader">   
-                <img id="" src="logo.jpg" alt="Logo">
-            
-            
-             <main class="scroll" id="index">
-                    <section id="drawing_pad">
-                        <h2>Write your stories</h2>
-                        <p>Stories can grant ideas and can immurse a reader into something at hand </p>
-
-                        <form action=>
-                                <textarea name="message" rows="50" cols="100">Write in here to begin your amazing story</textarea>
-                                <br>
-                                <input type="submit">
-                              </form>
-                              
-                       
-                        <li><a href="" id="reset_button">Reset</a></li>
-                        <li><a href="" id="save_button">Save</a></li>
-</body>
-<script src="./js/about.js"></script>
+    <header class="stickyHeader">   
+        <img id="" src="logo.jpg" alt="Logo">
+        
+        
+        <main class="scroll" id="index">
+            <section id="drawing_pad">
+                <h2>Write your stories</h2>
+                <p>Stories can grant ideas and can immurse a reader into something at hand </p>
+                <li><a href="" id="save_button">Save</a></li>
+                <li><a href="" id="reset_button">Reset</a></li>
+                
+                <form> 
+                <textarea onchange="alert('do you wanna save your draft?')"  ></textarea> </form>
+                </form>
+<script src="app.js"></script>
 </html>

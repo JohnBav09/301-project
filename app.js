@@ -1,15 +1,14 @@
 'use strict';
 
-var event_target = document.getElementById('drawing_pad');
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
+var event_target = document.getElementById('writing_pad');
 
-var save_drawing = function(){
+
+var save_story = function(){
   if (data.open_idx < 12){
     data.images[data.open_idx] = working;
     data.current = data.open_idx; // set "current" to be the most recently saved image
     data.open_idx++;
-    localStorage.setItem('nature_images', JSON.stringify(data));
+    localStorage.setItem('stories', JSON.stringify(data));
     alert(`Saved as image #${data.open_idx}`);
   }
   else {
@@ -31,23 +30,44 @@ var click_handler = function(event) {
     reset_current();
   } else if (event.target.id === 'save_button') {
     console.log(data);
-    save_drawing();
+    save_story();
 
   } else return;
 };
 
+var data, working;
 
-// on loading the data, we need to check... the current index.
-
-// data.current is the controlling element which picks which image we're working
-// on. data.current is what we change on other pages, then save the data object
-// again
-var init = function () {
-  event_target.addEventListener('click' , click_handler , false);
-
-  retrieve();
-
-  draw(ctx, working);
+var Story_data = function () {
+  this.current = 0; 
+  this.open_idx = 0;
+  this.stories = [];
+  this.newstory = true;
+  for (var i = 0; i < 12; i++) {
+    this.stories.push(new Story());
+  }
 };
 
-init();
+var Story = function (points, Story) {
+  this.points = points || [];
+  this.type = Story || 'Story';
+
+};
+
+var retrieve = function(){
+  if (localStorage.getItem('stories')){
+    data = JSON.parse(localStorage.getItem('stories'));
+    if (data.newStory) {
+      working = new Story();
+      return;
+    } else {
+      working = data.stories[data.current];
+    }
+    data.newStroy = true;
+    localStorage.setItem('stories', JSON.stringify(data));
+  } else {
+    data = new Story_data();
+    working = new Story();
+  }
+};
+
+retrieve();
