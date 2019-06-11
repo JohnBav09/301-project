@@ -1,6 +1,7 @@
 'use strict';
 
-var event_target = document.getElementById('writing_pad');
+var writingPad = document.getElementById('writing_pad');
+var textForm = document.getElementById('text-form');
 
 
 var save_story = function(){
@@ -21,9 +22,16 @@ var save_story = function(){
   }
 };
 
-var click_handler = function(event) {
+var clickHandler = function(event) {
   event.preventDefault();
-  if (event.target.id === 'canvas') {
+
+  var content = event.target.formcontent.value;
+  var tester = event.target.expTest.value;
+  console.log(tester);
+  console.log(content);
+
+
+  /*if (event.target.id === 'canvas') {
     canvas_click(event, ctx);
   }
   else if (event.target.id === 'reset_button') {
@@ -32,7 +40,7 @@ var click_handler = function(event) {
     console.log(data);
     save_story();
 
-  } else return;
+  } else return;*/
 };
 
 var data, working;
@@ -70,9 +78,11 @@ var retrieve = function(){
   }
 };
 
-retrieve();
+// retrieve();
 
-function annotate(){
-  var typed= document.getElementById("fname").value;
-  document.getElementById("printchatbox").innerHTML= typed;
-}
+// function annotate(){
+//   var typed= document.getElementById("fname").value;
+//   document.getElementById("printchatbox").innerHTML= typed;
+// }
+
+textForm.addEventListener('submit', clickHandler);
